@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+<body>
+    <div class="container">
+        <%- include("./partials/navs.ejs") %>
+        <h1><%= title %></h1>
+        <form action="" method="post">
+            <fieldset>
+                <label for="msg-title">Title</label>
+                <input type="text" id="msg-title" name="msg-title" placeholder="message title" required>
+            </fieldset>
+            <fieldset>
+                <label for="msg-body">Body</label>
+                <textarea type="text" id="msg-body" name="msg-body" required placeholder="type your message here"></textarea>
+            </fieldset>
+            <button type="submit">Post Message</button>
+        </form>
+    </div>
+</body>
+</html>

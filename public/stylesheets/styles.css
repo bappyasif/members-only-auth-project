@@ -1,0 +1,157 @@
+h1, h2, h3, h4, p, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: honeydew;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.msg-wrapper {
+    position: relative;
+    width: 40vw;
+    display: flex;
+    align-items: flex-start;
+    outline: dashed 0.2px;
+    margin: 13px 0;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.msg-wrapper .left {
+    min-width: 65px;
+}
+
+.msg-wrapper .middle {
+    min-width: 110px;
+    line-break: loose;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.msg-wrapper .middle p {
+    font-size: x-large;
+    writing-mode: tb;
+    transform: rotate(-180deg);
+}
+
+.msg-wrapper .left span {
+    font-size: 5.1em;
+    color: Tomato;
+    position: absolute;
+    top: 0;
+}
+
+.msg-wrapper .left p {
+    margin: 2px 2px 0;
+}
+
+.msg-wrapper .right {
+    width: -webkit-fill-available;
+}
+
+.msg-wrapper .right .baseline {
+    text-align: right;
+}
+
+.msg-wrapper i.fa-solid.fa-circle-xmark {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: xx-large;
+}
+
+.msg-wrapper .top,
+.msg-wrapper .bottom {
+    display: flex;
+    align-items: center;
+}
+
+.msg-wrapper .top {
+    height: 2rem;
+    align-items: center;
+}
+
+.msg-wrapper .bottom {
+    align-self: flex-end;
+    align-items: baseline;
+    /* min-width: 33.11vw; */
+    justify-content: space-between;
+}
+
+.msg-wrapper .top h2:first-child {
+    margin-right: 42px;
+}
+
+.msg-wrapper .top span,
+.msg-wrapper .bottom span {
+    margin-right: 20px;
+}
+
+.msg-wrapper .bottom p:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-end;
+}
+
+.msg-wrapper .bottom p:first-child span:last-child {
+    font-size: 27px;
+    line-break: loose;
+}
+
+.msg-wrapper .bottom p:last-child {
+    min-width: 101px;
+}
+
+form,
+input,
+textarea {
+    font-size: x-large;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+form button {
+    font-size: x-large;
+    margin: 8px 0;
+    background-color: tomato;
+    border: none;
+    border-radius: 11px;
+    padding: 4px 20px;
+}
+
+form button:hover {
+    background-color: coral;
+}
+
+nav {
+    line-height: 4rem;
+}
+
+a,
+nav a {
+    font-size: xx-large;
+    padding: 2px 6px;
+    margin: 11px;
+    text-decoration: none;
+    background-color: burlywood;
+    border-radius: 11px;
+}
+
+a {
+    outline: none;
+}
+
+a:hover {
+    background-color: tomato;
+    border-radius: 11px;
+}

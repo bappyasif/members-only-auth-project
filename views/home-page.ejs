@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+<body>    
+    <div class="container">
+        <%- include("./partials/navs.ejs") %>
+        <h1><%= title %></h1>
+        <% messages?.forEach(msg => { %>
+            <div class="msg-wrapper">
+                <div class="left">
+                    <span><i class="fa-solid fa-user-astronaut"></i></span>
+                </div>
+                <div class="middle">
+                    <% if(loggedIn) { %>
+                        <h2 class="author"><%= msg.author_name %></h2>
+                    <% } else { %>
+                        <h2 style="font-size: smaller;" class="author">Annonymous</h2>
+                    <% } %>
+                    <p>::author::</p>
+                </div>
+                <div class="right">
+                    <div class="top">
+                        <h2><span><i class="fa-solid fa-envelope"></i></span><span><%= msg.title %></span></h2>
+                    </div>
+                    <div class="bottom">
+                        <p><span style="font-size: 26px; color: Tomato;"><i class="fa-solid fa-envelope-open-text"></i></span><span><%= msg.body %></span></p>
+                    </div>
+                    <div class="baseline">
+                        <p>
+                            <span><i class="fa-solid fa-calendar-days"></i></span>
+                            <% if(loggedIn) { %>
+                                <span class="d-posted"><%= msg.posted_date %></span>
+                            <% } else { %>
+                                <span class="d-posted">Some Day, Login to find out</span>
+                            <% } %>
+                        </p>
+                    </div>
+                </div>
+                
+                <% if(isAdmin && loggedIn) { %>
+                    <form action="" method="post">
+                        <input type="text" name="delete" value=<%= msg.delete %>  hidden>
+                        <!-- <input type="text" name="delete" value="delt"  hidden> -->
+                        <button style="border: none; background-color: transparent;" type="submit"><i class="fa-solid fa-circle-xmark"></i></button>
+                    </form>
+                <% } %>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
