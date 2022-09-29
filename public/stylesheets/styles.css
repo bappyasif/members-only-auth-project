@@ -109,6 +109,12 @@ body {
     min-width: 101px;
 }
 
+form {
+    outline: dashed 0.2px;
+    border-radius: 4px;
+    padding: 11px 11px;
+}
+
 form,
 input,
 textarea {
@@ -118,6 +124,19 @@ textarea {
 input,
 textarea {
     width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: solid 0.2px;
+    border-radius: 6px;
+}
+
+textarea,
+input {
+    padding: 0 0 0 6px;
+}
+
+input {
+    line-height: 2.4rem;
 }
 
 form button {
@@ -127,6 +146,12 @@ form button {
     border: none;
     border-radius: 11px;
     padding: 4px 20px;
+}
+
+form fieldset {
+    margin: 2px 0;
+    border: none;
+    padding: 4px 4px 0 0;
 }
 
 form button:hover {
