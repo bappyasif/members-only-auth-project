@@ -52,27 +52,8 @@ let homePagePostReq = [
                         res.redirect("/")
                     })
             })
-
-        // Message.findByIdAndDelete(req.body.delete)
-        // .then(() => {
-        //     console.log("Delete successful");
-        //     res.redirect("/")
-        // })
-        // res.redirect("/")
     }
 ]
-
-// let homePageGetReq = (req, res, next) => {
-//     console.log(req.session, "req.session", req.sessionID)
-//     User.find()
-//     .then(users => {
-//         res.render("home-page", {
-//             title: "Home Page",
-//             users: users,
-//             loggedIn: req.session.passport.user, 
-//         })
-//     }).catch(err => console.log(err))
-// }
 
 module.exports = {
     homePageGetReq,

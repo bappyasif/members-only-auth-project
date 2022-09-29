@@ -180,3 +180,13 @@ a:hover {
     background-color: tomato;
     border-radius: 11px;
 }
+
+.errors p,
+.errors ul {
+    text-transform: capitalize;
+}
+
+.errors ul {
+    color: maroon;
+    font-size: large;
+}

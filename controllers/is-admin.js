@@ -40,14 +40,6 @@ let isAdminPostReq = [
             }
         })
         .catch(err => next(err))
-        
-        // User.findByIdAndUpdate(req.session.passport.user, {admin: true}, {}, (err, _) => {
-        //     if(err) return next(err);
-
-        //     // successfully updated
-        //     // and now redirecting to home page
-        //     res.redirect("/");
-        // })
     }
 ]
 

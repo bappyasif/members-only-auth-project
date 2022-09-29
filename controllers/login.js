@@ -1,11 +1,3 @@
-// let passport = require("passport");
-
-// let User = require("../model/user");
-
-// let bcrypt = require("bcryptjs");
-
-// let LocalStrategy = require("passport-local").Strategy;
-
 const { body, validationResult } = require("express-validator")
 
 let passport = require("../config/passport");
@@ -21,7 +13,11 @@ let loginFormRePopulate = [
     (req, res, next) => {
         let errors = validationResult(req);
         if(!errors.isEmpty()) {
-            res.render("login-form", {title: "Login Form", errors: null, username: req.body.username})
+            res.render("login-form", {
+                title: "Login Form", 
+                errors: null, 
+                username: req.body.username
+            })
             return;
         }
         res.send("you're not supposed to be here....")

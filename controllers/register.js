@@ -56,8 +56,6 @@ let registerFormPostReq = [
 
             let newUser = new User(user);
 
-            // console.log(newUser, "<><>", user)
-
             newUser.save((err, result) => {
                 if (err) return next(err);
 
@@ -65,15 +63,6 @@ let registerFormPostReq = [
                 res.redirect("/login")
             })
         })
-
-        // let newUser = new User(user);
-
-        // newUser.save((err, result) => {
-        //     if(err) return next(err);
-
-        //     // successfull, redirect to login page
-        //     res.send("login page")
-        // })
     }
 ]
 
