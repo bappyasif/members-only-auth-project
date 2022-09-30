@@ -8,7 +8,7 @@ let homePageGetReq = (req, res, next) => {
     async.parallel(
         {
             currentlyLoggedInUser(cb) {
-                User.findById(req.session.passport.user).exec(cb)
+                User.findById(req?.session?.passport?.user).exec(cb)
             },
 
             messages(cb) {
