@@ -32,7 +32,19 @@ body {
     min-width: 110px;
     line-break: loose;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    max-width: 110px;
+    position: relative;
+}
+
+.msg-wrapper .middle h2.author {
+    min-width: 83px;
+    text-align: center;
+}
+
+.msg-wrapper .middle h6 {
+    position: absolute;
+    left: 6px;
 }
 
 .msg-wrapper .middle p {
@@ -162,18 +174,18 @@ nav {
     line-height: 4rem;
 }
 
-a,
+.create-msg,
 nav a {
     font-size: xx-large;
     padding: 2px 6px;
     margin: 11px;
-    text-decoration: none;
     background-color: burlywood;
-    border-radius: 11px;
 }
 
 a {
     outline: none;
+    text-decoration: none;
+    border-radius: 11px;
 }
 
 a:hover {

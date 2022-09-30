@@ -15,6 +15,7 @@
                         <h2 class="author"><%= msg.author_name %></h2>
                     <% } else { %>
                         <h2 style="font-size: smaller;" class="author">Annonymous</h2>
+                        <h6><a href="/login">login</a>, be <a href="/join-club">member</a> <br> to find out</h6>
                     <% } %>
                     <p>::author::</p>
                 </div>
@@ -31,7 +32,7 @@
                             <% if(loggedIn) { %>
                                 <span class="d-posted"><%= msg.posted_date %></span>
                             <% } else { %>
-                                <span class="d-posted">Some Day, Login to find out</span>
+                                <span class="d-posted">Some Day, <a href="/login">login</a>, become <a href="/join-club">member</a> to find out</span>
                             <% } %>
                         </p>
                     </div>
