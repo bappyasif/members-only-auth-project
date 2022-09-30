@@ -8,7 +8,8 @@ let registerFormGetReq = (req, res, next) => {
     res.render("signup-form", {
         title: "Signup Form",
         errors: null,
-        user: null
+        user: null,
+        isLoggedIn: req?.session?.passport?.user ? true : false
     })
 }
 
@@ -41,7 +42,8 @@ let registerFormPostReq = [
             res.render("signup-form", {
                 title: "Signup Form",
                 errors: errors.array(),
-                user: user
+                user: user,
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
 
             return

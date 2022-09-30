@@ -11,7 +11,8 @@ let isAdminGetReq = (req, res, next) => {
         } else {
             res.render("is-admin", {
                 title: "Making User An Admin",
-                errors: null
+                errors: null,
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
         }
     }).catch(err => next(err))
@@ -28,7 +29,8 @@ let isAdminPostReq = [
         if(!errors.isEmpty()) {
             res.render("is-admin", {
                 title: "Making User An Admin",
-                errors: errors.array()
+                errors: errors.array(),
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
             return
         }
@@ -54,7 +56,8 @@ let isAdminPostReq = [
 let checkAdminGetReq = (req, res, next) => {
     res.render("check-filler", {
         title: "Is Already An Admin",
-        system_msg: "You're already an admin"
+        system_msg: "You're already an admin",
+        isLoggedIn: req?.session?.passport?.user ? true : false
     })
 }
 

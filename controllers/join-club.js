@@ -13,7 +13,8 @@ let joinClubGetReq = (req, res, next) => {
         } else {
             res.render("club-member", {
                 title: "Join Club",
-                errors: null
+                errors: null,
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
         }
     }).catch(err => next(err))
@@ -37,7 +38,8 @@ let joinClubPostReq = [
         if(!errors.isEmpty()) {
             res.render("club-member", {
                 title: "Join Club",
-                errors: errors.array()
+                errors: errors.array(),
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
             return
         }
@@ -72,7 +74,8 @@ let joinClubPostReq = [
 let checkMemberGetReq = (req, res, next) => {
     res.render("check-filler", {
         title: "Is Already A Member",
-        system_msg: "You're already a member"
+        system_msg: "You're already a member",
+        isLoggedIn: req?.session?.passport?.user ? true : false
     })
 }
 

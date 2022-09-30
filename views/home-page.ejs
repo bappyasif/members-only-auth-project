@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("./partials/head.ejs") %>
+    <%- include("./partials/head.ejs", {isLoggedIn}) %>
 <body>    
     <div class="container">
         <%- include("./partials/navs.ejs") %>
@@ -11,7 +11,7 @@
                     <span><i class="fa-solid fa-user-astronaut"></i></span>
                 </div>
                 <div class="middle">
-                    <% if(loggedIn) { %>
+                    <% if(isMember) { %>
                         <h2 class="author"><%= msg.author_name %></h2>
                     <% } else { %>
                         <h2 style="font-size: smaller;" class="author">Annonymous</h2>
@@ -29,7 +29,7 @@
                     <div class="baseline">
                         <p>
                             <span><i class="fa-solid fa-calendar-days"></i></span>
-                            <% if(loggedIn) { %>
+                            <% if(isMember) { %>
                                 <span class="d-posted"><%= msg.posted_date %></span>
                             <% } else { %>
                                 <span class="d-posted">Some Day, <a href="/login">login</a>, become <a href="/join-club">member</a> to find out</span>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 
-                <% if(isAdmin && loggedIn) { %>
+                <% if(isAdmin && isMember) { %>
                     <form style="outline: none;" action="" method="post">
                         <input type="text" name="delete" value=<%= msg.delete %>  hidden>
                         <!-- <input type="text" name="delete" value="delt"  hidden> -->

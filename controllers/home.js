@@ -27,8 +27,9 @@ let homePageGetReq = (req, res, next) => {
                 title: "Home Page",
                 // users: results.users,
                 messages: results.messages,
-                loggedIn: results.currentlyLoggedInUser?.member,
-                isAdmin: results.currentlyLoggedInUser?.admin
+                isMember: results.currentlyLoggedInUser?.member,
+                isAdmin: results.currentlyLoggedInUser?.admin,
+                isLoggedIn: req?.session?.passport?.user ? true : false
             })
         }
     )

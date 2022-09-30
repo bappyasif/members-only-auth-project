@@ -11,7 +11,8 @@ const { body } = require("express-validator");
 let messageBoardGetReq = (req, res, next) => {
     res.render("msg-board", {
         title: "Message Board",
-        createMsg: true
+        createMsg: true,
+        isLoggedIn: req?.session?.passport?.user ? true : false
     });
 }
 
