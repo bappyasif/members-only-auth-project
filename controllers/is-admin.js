@@ -3,10 +3,18 @@ const { body, check, validationResult } = require("express-validator")
 let User = require("../model/user");
 
 let isAdminGetReq = (req, res, next) => {
-    res.render("is-admin", {
-        title: "Making User An Admin",
-        errors: null
-    })
+    User.findById(req.session.passport.user)
+    .then(result => {
+        if(result.admin) {
+            console.log("you're an admin already")
+            res.redirect("/already-admin");
+        } else {
+            res.render("is-admin", {
+                title: "Making User An Admin",
+                errors: null
+            })
+        }
+    }).catch(err => next(err))
 }
 
 let isAdminPostReq = [
@@ -41,9 +49,17 @@ let isAdminPostReq = [
         })
         .catch(err => next(err))
     }
-]
+];
+
+let checkAdminGetReq = (req, res, next) => {
+    res.render("check-filler", {
+        title: "Is Already An Admin",
+        system_msg: "You're already an admin"
+    })
+}
 
 module.exports = {
     isAdminGetReq,
-    isAdminPostReq
+    isAdminPostReq,
+    checkAdminGetReq
 }

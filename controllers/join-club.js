@@ -4,11 +4,19 @@ const { body, validationResult, check } = require("express-validator")
 
 let User = require("../model/user");
 
-let joinClubGetReq = (req, res, next) => {
-    res.render("club-member", {
-        title: "Join Club",
-        errors: null
-    })
+let joinClubGetReq = (req, res, next) => {    
+    User.findById(req.session.passport.user)
+    .then(result => {
+        if(result.member) {
+            console.log("you're a member already")
+            res.redirect("/already-member");
+        } else {
+            res.render("club-member", {
+                title: "Join Club",
+                errors: null
+            })
+        }
+    }).catch(err => next(err))
 }
 
 let joinClubPostReq = [
@@ -59,9 +67,17 @@ let joinClubPostReq = [
             }
         )
     }
-]
+];
+
+let checkMemberGetReq = (req, res, next) => {
+    res.render("check-filler", {
+        title: "Is Already A Member",
+        system_msg: "You're already a member"
+    })
+}
 
 module.exports = {
     joinClubGetReq,
-    joinClubPostReq
+    joinClubPostReq,
+    checkMemberGetReq
 }
