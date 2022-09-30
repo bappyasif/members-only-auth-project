@@ -11,7 +11,6 @@ const { body } = require("express-validator");
 let messageBoardGetReq = (req, res, next) => {
     res.render("msg-board", {
         title: "Message Board",
-        // createMsg: req.user.member
         createMsg: true
     });
 }
@@ -72,7 +71,6 @@ let logOutGetReq = (req, res, next) => {
 module.exports = {
     messageBoardGetReq,
     logOutGetReq,
-    // messageBoardGetReqForCreatingNewMessage
     messageBoardCreateNewGetReq,
     messageBoardCreateNewPostReq
 }
