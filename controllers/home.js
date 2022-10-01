@@ -7,10 +7,6 @@ let homePageGetReq = (req, res, next) => {
     // console.log(req.session.passport.user, "req.session", req.sessionID)
     async.parallel(
         {
-            currentlyLoggedInUser(cb) {
-                User.findById(req?.session?.passport?.user).exec(cb)
-            },
-
             messages(cb) {
                 Message.find().populate("author").exec(cb)
             }
@@ -19,16 +15,10 @@ let homePageGetReq = (req, res, next) => {
         (err, results) => {
             if (err) return next(err);
 
-            // console.log(results.currentlyLoggedInUser, "results.currentlyLoggedInUser")
-
-            // console.log(results.messages)
-
+            // isAuthenticated, isMember, isAdmin, these logics are now done through res.local variables in routes
             res.render("home-page", {
                 title: "Home Page",
-                // users: results.users,
-                messages: results.messages,
-                isMember: results.currentlyLoggedInUser?.member,
-                isAdmin: results.currentlyLoggedInUser?.admin
+                messages: results.messages
             })
         }
     )

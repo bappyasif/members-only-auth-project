@@ -10,8 +10,10 @@
             <span><i class="fa-solid fa-calendar-days"></i></span>
             <% if(isMember) { %>
                 <span class="d-posted"><%= msg?.posted_date %></span>
-            <% } else { %>
-                <span class="d-posted">Some Day, <a href="/login">login</a>, become <a href="/join-club">member</a> to find out</span>
+            <% } else if(!isAuthenticated) { %>
+                <span class="d-posted">Some Day, <a href="/login">login</a> to find out</span>
+            <% } else if(!isMember && isAuthenticated) { %>
+                <span class="d-posted">Some Day, become <a href="/join-club">member</a> to find out</span>
             <% } %>
         </p>
     </div>
