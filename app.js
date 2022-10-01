@@ -9,6 +9,7 @@ let MongoStore = require("connect-mongo")(session);
 const {connectDB, db} = require("./config/database");
 const routes = require("./routes");
 const { homePageGetReq, homePagePostReq } = require("./controllers/home");
+const { isAuthenticated } = require("./routes/authChecks");
 
 let app = express();
 

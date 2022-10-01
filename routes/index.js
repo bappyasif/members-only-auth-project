@@ -4,9 +4,11 @@ const { joinClubGetReq, joinClubPostReq, checkMemberGetReq } = require("../contr
 const { loginFormGetReq, loginFormPostReq } = require("../controllers/login");
 const { messageBoardGetReq, logOutGetReq, messageBoardCreateNewGetReq, messageBoardCreateNewPostReq } = require("../controllers/message-board");
 const { registerFormGetReq, registerFormPostReq } = require("../controllers/register");
-const { isAuth, isMember } = require("./authChecks");
+const { isAuth, isMember, isAuthenticated } = require("./authChecks");
 
 let routes = express();
+
+routes.use(isAuthenticated)
 
 routes.get("/register", registerFormGetReq);
 

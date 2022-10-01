@@ -2,7 +2,7 @@ const { body, validationResult } = require("express-validator")
 
 let passport = require("../config/passport");
 
-let loginFormGetReq = (req, res) => res.render("login-form", {title: "Login Form", errors: null, isLoggedIn: req?.session?.passport?.user ? true : false})
+let loginFormGetReq = (req, res) => res.render("login-form", {title: "Login Form", errors: null})
 
 let loginFormRePopulate = [
     body("username", "login address can not be empty")
@@ -16,8 +16,7 @@ let loginFormRePopulate = [
             res.render("login-form", {
                 title: "Login Form", 
                 errors: null, 
-                username: req.body.username,
-                isLoggedIn: req?.session?.passport?.user ? true : false
+                username: req.body.username
             })
             return;
         }

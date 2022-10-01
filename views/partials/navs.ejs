@@ -3,7 +3,7 @@
     <a href="/join-club">Join Club</a>
     <a href="/is-admin">Become Admin</a>
     <a href="/message-board">Message Board</a>
-    <% if(!isLoggedIn) { %>
+    <% if(!isAuthenticated) { %>
         <a href="/register">Register</a>
         <a href="/login">Login</a>  
     <% } else { %>
