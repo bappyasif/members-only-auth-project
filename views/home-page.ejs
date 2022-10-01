@@ -15,7 +15,17 @@
                         <h2 class="author"><%= msg.author_name %></h2>
                     <% } else { %>
                         <h2 style="font-size: smaller;" class="author">Annonymous</h2>
-                        <h6><a href="/login">login</a>, be <a href="/join-club">member</a> <br> to find out</h6>
+                    <% } %>
+                    <% if(!isAdmin) { %>
+                        <h6>
+                            <% if(isAuthenticated) { %>
+                                <a href="/join-club">become member</a>
+                            <% } else { %>
+                                <a href="/login">login</a>
+                            <% } %>
+                            <br>
+                            <span> to find out</span>
+                        </h6>
                     <% } %>
                     <p>::author::</p>
                 </div>
