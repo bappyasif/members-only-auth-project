@@ -1,10 +1,9 @@
 let async = require("async")
-
 const { body, validationResult, check } = require("express-validator")
 
 let User = require("../model/user");
 
-let joinClubGetReq = (req, res, next) => {    
+let serveJoinClubForm = (req, res, next) => {    
     User.findById(req.session.passport.user)
     .then(result => {
         if(result.member) {
@@ -19,7 +18,7 @@ let joinClubGetReq = (req, res, next) => {
     }).catch(err => next(err))
 }
 
-let joinClubPostReq = [
+let updateUserMembershipStatus = [
     body("username", "user name can not be left empty")
     .trim().isLength({min: 1}).escape(),
     body("secret", "secret can not be left empty")
@@ -69,7 +68,7 @@ let joinClubPostReq = [
     }
 ];
 
-let checkMemberGetReq = (req, res, next) => {
+let serveUserAlreadyMember = (req, res, next) => {
     res.render("check-filler", {
         title: "Is Already A Member",
         system_msg: "You're already a member"
@@ -77,7 +76,7 @@ let checkMemberGetReq = (req, res, next) => {
 }
 
 module.exports = {
-    joinClubGetReq,
-    joinClubPostReq,
-    checkMemberGetReq
+    serveJoinClubForm,
+    updateUserMembershipStatus,
+    serveUserAlreadyMember
 }

@@ -18,17 +18,18 @@ let isMember = (req, res, next) => {
     }
 }
 
-let isAuthenticated = (req, res, next) => {
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ * rather than using individual function for them it's betetr to have them in same function
+ * setting up res.locals variables and then returning middleware to next 
+ */
+let setAuthenticationVariables = (req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated();
-    return next();
-}
-
-let clubMember = (req, res, next) => {
     res.locals.isMember = req.user?.member;
-    return next();
-}
-
-let isAdmin = (req, res, next) => {
     res.locals.isAdmin = req.user?.admin;
     return next();
 }
@@ -36,7 +37,5 @@ let isAdmin = (req, res, next) => {
 module.exports = {
     isAuth,
     isMember,
-    isAuthenticated,
-    clubMember,
-    isAdmin
+    setAuthenticationVariables
 }

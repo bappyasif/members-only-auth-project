@@ -1,47 +1,35 @@
 let express = require("express");
-const { isAdminGetReq, isAdminPostReq } = require("../controllers/is-admin");
-const { joinClubGetReq, joinClubPostReq, checkMemberGetReq } = require("../controllers/join-club");
-const { loginFormGetReq, loginFormPostReq } = require("../controllers/login");
-const { messageBoardGetReq, logOutGetReq, messageBoardCreateNewGetReq, messageBoardCreateNewPostReq } = require("../controllers/message-board");
-const { registerFormGetReq, registerFormPostReq } = require("../controllers/register");
-const { isAuth, isMember, isAuthenticated, clubMember, isAdmin } = require("./authChecks");
+const { serveBecomeAdminForm, updateUserAdminStatus, serveUserAlreadyAdmin } = require("../controllers/is-admin");
+const { serveUserAlreadyMember, serveJoinClubForm, updateUserMembershipStatus } = require("../controllers/join-club");
+const { serveUserLoginForm, authenticateUserloginAttempt } = require("../controllers/login");
+const { serveDefaultMessageBoard, saveMessageInDatabase, logOutCurrentUser, createNewMessageForm } = require("../controllers/message-board");
+const { serveUserRegistrationForm, saveRegisteredUserInDatabase } = require("../controllers/register");
+const { isAuth, setAuthenticationVariables } = require("./authChecks");
 
 let routes = express();
 
-routes.use(isAuthenticated);
+// setting up res.locals variables for conditional rendering
+routes.use(setAuthenticationVariables);
 
-routes.use(clubMember);
+routes.get("/register", serveUserRegistrationForm);
+routes.post("/register", saveRegisteredUserInDatabase);
 
-routes.use(isAdmin)
+routes.get("/join-club", isAuth, serveJoinClubForm);
+routes.post("/join-club", updateUserMembershipStatus);
 
-routes.get("/register", registerFormGetReq);
+routes.get("/is-admin", isAuth, serveBecomeAdminForm);
+routes.post("/is-admin", isAuth, updateUserAdminStatus);
 
-routes.post("/register", registerFormPostReq);
+routes.get("/login", serveUserLoginForm);
+routes.post("/login", authenticateUserloginAttempt);
 
-routes.get("/join-club", isAuth, joinClubGetReq);
+routes.get("/already-member", serveUserAlreadyMember)
+routes.get("/already-admin", serveUserAlreadyAdmin)
 
-routes.post("/join-club", joinClubPostReq);
+routes.get("/message-board", isAuth, serveDefaultMessageBoard)
+routes.get("/message-board/create-new", createNewMessageForm)
+routes.post("/message-board/create-new", isAuth, saveMessageInDatabase)
 
-routes.get("/is-admin", isAuth, isAdminGetReq);
-
-routes.post("/is-admin", isAuth, isAdminPostReq);
-
-routes.get("/login", loginFormGetReq);
-
-routes.post("/login", loginFormPostReq);
-
-routes.get("/message-board", isAuth, messageBoardGetReq)
-
-routes.get("/already-member", checkMemberGetReq)
-
-routes.get("/already-admin", checkMemberGetReq)
-
-// routes.get("/message-board", isMember, messageBoardGetReqForCreatingNewMessage)
-
-routes.get("/message-board/create-new", messageBoardCreateNewGetReq)
-
-routes.post("/message-board/create-new", isAuth, messageBoardCreateNewPostReq)
-
-routes.get("/logout", logOutGetReq)
+routes.get("/logout", logOutCurrentUser)
 
 module.exports = routes

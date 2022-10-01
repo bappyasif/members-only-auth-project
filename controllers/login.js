@@ -1,8 +1,7 @@
 const { body, validationResult } = require("express-validator")
-
 let passport = require("../config/passport");
 
-let loginFormGetReq = (req, res) => res.render("login-form", {title: "Login Form", errors: null})
+let serveUserLoginForm = (req, res) => res.render("login-form", {title: "Login Form", errors: null})
 
 let loginFormRePopulate = [
     body("username", "login address can not be empty")
@@ -24,13 +23,13 @@ let loginFormRePopulate = [
     }
 ]
 
-let loginFormPostReq = passport.authenticate("local", {
+let authenticateUserloginAttempt = passport.authenticate("local", {
     failureRedirect: "/login",
     successRedirect: "/message-board"
 })
 
 module.exports = {
-    loginFormGetReq,
-    loginFormPostReq,
+    serveUserLoginForm,
+    authenticateUserloginAttempt,
     loginFormRePopulate
 }

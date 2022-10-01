@@ -1,10 +1,9 @@
 let bcrypt = require("bcryptjs");
-
 let { body, validationResult, check } = require("express-validator");
 
 let User = require("../model/user");
 
-let registerFormGetReq = (req, res, next) => {
+let serveUserRegistrationForm = (req, res, next) => {
     res.render("signup-form", {
         title: "Signup Form",
         errors: null,
@@ -12,7 +11,7 @@ let registerFormGetReq = (req, res, next) => {
     })
 }
 
-let registerFormPostReq = [
+let saveRegisteredUserInDatabase = [
     body("firstname", "first name can not be empty")
         .trim().isLength({ min: 1 }).escape(),
     body("lastname", "last name can not be empty")
@@ -52,7 +51,6 @@ let registerFormPostReq = [
 
             // updating user entry with hashed password and membership status
             user.password = hashedPassword
-            // user.membership_status = true; // now moved to join club logic
 
             let newUser = new User(user);
 
@@ -67,6 +65,6 @@ let registerFormPostReq = [
 ]
 
 module.exports = {
-    registerFormGetReq,
-    registerFormPostReq
+    serveUserRegistrationForm,
+    saveRegisteredUserInDatabase
 }

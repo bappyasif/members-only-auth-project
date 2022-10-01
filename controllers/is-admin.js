@@ -2,7 +2,7 @@ const { body, check, validationResult } = require("express-validator")
 
 let User = require("../model/user");
 
-let isAdminGetReq = (req, res, next) => {
+let serveBecomeAdminForm = (req, res, next) => {
     User.findById(req.session.passport.user)
     .then(result => {
         if(result.admin) {
@@ -17,7 +17,7 @@ let isAdminGetReq = (req, res, next) => {
     }).catch(err => next(err))
 }
 
-let isAdminPostReq = [
+let updateUserAdminStatus = [
     body("passcode", "passcode can not be left empty"),
     check("passcode", "passcode needs to be matched with what is expected").exists()
     .custom(val => val.toLowerCase() === "admin"),
@@ -51,7 +51,7 @@ let isAdminPostReq = [
     }
 ];
 
-let checkAdminGetReq = (req, res, next) => {
+let serveUserAlreadyAdmin = (req, res, next) => {
     res.render("check-filler", {
         title: "Is Already An Admin",
         system_msg: "You're already an admin"
@@ -59,7 +59,7 @@ let checkAdminGetReq = (req, res, next) => {
 }
 
 module.exports = {
-    isAdminGetReq,
-    isAdminPostReq,
-    checkAdminGetReq
+    serveBecomeAdminForm,
+    updateUserAdminStatus,
+    serveUserAlreadyAdmin
 }

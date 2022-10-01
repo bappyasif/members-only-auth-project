@@ -1,9 +1,10 @@
 let async = require("async");
+const { check } = require("express-validator");
+
 let User = require("../model/user");
 let Message = require("../model/message");
-const { body, check } = require("express-validator");
 
-let homePageGetReq = (req, res, next) => {
+let serveDefaultHomePage = (req, res, next) => {
     // console.log(req.session.passport.user, "req.session", req.sessionID)
     async.parallel(
         {
@@ -24,7 +25,7 @@ let homePageGetReq = (req, res, next) => {
     )
 }
 
-let homePagePostReq = [
+let homePageDeleteMessage = [
     check("delete").exists(),
     (req, res, next) => {
         // console.log(req.session.passport.user, "{}{}", req.body)
@@ -54,6 +55,6 @@ let homePagePostReq = [
 ]
 
 module.exports = {
-    homePageGetReq,
-    homePagePostReq
+    serveDefaultHomePage,
+    homePageDeleteMessage
 }

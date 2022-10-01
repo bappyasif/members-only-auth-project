@@ -1,27 +1,26 @@
 let async = require("async");
 
 let { DateTime } = require("luxon");
-
-let User = require("../model/user");
-
-let Message = require("../model/message");
-
 const { body } = require("express-validator");
 
-let messageBoardGetReq = (req, res, next) => {
+let User = require("../model/user");
+let Message = require("../model/message");
+
+
+let serveDefaultMessageBoard = (req, res, next) => {
     res.render("msg-board", {
         title: "Message Board",
         createMsg: true
     });
 }
 
-let messageBoardCreateNewGetReq = (req, res, next) => {
+let createNewMessageForm = (req, res, next) => {
     res.render("new-msg", {
         title: "Create A New Message"
     })
 }
 
-let messageBoardCreateNewPostReq = [
+let saveMessageInDatabase = [
     body("msg-title", "Title can not be left empty")
         .trim().isLength({ min: 1 }).escape(),
     body("msg-body", "Body can not be left empty")
@@ -63,14 +62,14 @@ let messageBoardCreateNewPostReq = [
     }
 ]
 
-let logOutGetReq = (req, res, next) => {
+let logOutCurrentUser = (req, res, next) => {
     req.logout()
     res.redirect("/")
 }
 
 module.exports = {
-    messageBoardGetReq,
-    logOutGetReq,
-    messageBoardCreateNewGetReq,
-    messageBoardCreateNewPostReq
+    serveDefaultMessageBoard,
+    logOutCurrentUser,
+    createNewMessageForm,
+    saveMessageInDatabase
 }

@@ -1,15 +1,13 @@
-let express = require("express");
-let path = require("path");
-
-let session = require("express-session");
-let passport = require("passport");
-
-let MongoStore = require("connect-mongo")(session);
+const express = require("express");
+const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
 
 const {connectDB, db} = require("./config/database");
+const { serveDefaultHomePage, homePageDeleteMessage } = require("./controllers/home");
+
+const MongoStore = require("connect-mongo")(session);
 const routes = require("./routes");
-const { homePageGetReq, homePagePostReq } = require("./controllers/home");
-const { isAuthenticated } = require("./routes/authChecks");
 
 let app = express();
 
@@ -21,7 +19,15 @@ let sessionStore = new MongoStore({
     collection: "sessions"
 })
 
-app.use(session({secret: process.env.SECRET, resave: false, saveUninitialized: true, store: sessionStore, cookie: {maxAge: 1000*60*60*24}}))
+const ONE_DAY = 1000*60*60*24; // 24 hours time in millis
+
+app.use(session({
+    secret: process.env.SECRET, 
+    resave: false, 
+    saveUninitialized: true, 
+    store: sessionStore, 
+    cookie: {maxAge: ONE_DAY}
+}))
 
 // connecting DB
 connectDB()
@@ -42,8 +48,15 @@ app.use(passport.session());
 app.use(express.urlencoded({extended: true}));
 app.use(routes);
 
-// app.get("/", (req, res, next) => res.send("hoi hoi"))
-app.get("/", homePageGetReq)
-app.post("/", homePagePostReq)
+app.get("/", serveDefaultHomePage);
+app.post("/", homePageDeleteMessage);
 
-app.listen(process.env.PORT || 3000, () => console.log("server running on port number "+ (undefined !== process.env.PORT ? process.env.PORT : 3000)))
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, (err) => {
+    if(err) {
+        console.log("Error in server setup: \n", err)
+    } else {
+        console.log("Server is running on PORT number: ", PORT)
+    }
+});

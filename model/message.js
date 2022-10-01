@@ -18,7 +18,10 @@ MessageSchema.virtual("delete")
 
 MessageSchema.virtual("isAdmin")
 .get(function() {
-    return this.author.admin ? this.author.admin : false;
+    // return this.author.admin ? this.author.admin : false;
+
+    // checking for true/false value or falsy
+    return !!this.author.admin;
 })
 
 MessageSchema.virtual("author_name")
