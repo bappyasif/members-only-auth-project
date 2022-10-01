@@ -1,11 +1,9 @@
 let isAuth = (req, res, next) => {
     if(req.isAuthenticated()) {
-        console.log("authenticated", req);
-        // res.locals.isAuthenticated = isAuthenticated();
+        console.log("authenticated");
         next()
     } else {
         console.log("not authenticated");
-        // res.locals.isAuthenticated = isAuthenticated();
         res.status(401).json({msg: "not authorized to access this document"})
     }
 }
@@ -13,11 +11,9 @@ let isAuth = (req, res, next) => {
 let isMember = (req, res, next) => {
     if(req.isAuthenticated() && req.user.member) {
         console.log("is member")
-        // res.locals.isMember = req.user.member;
         next();
     } else {
         console.log("not member")
-        // res.locals.isMember = req.user.member;
         res.status(401).json({msg: "not a member to post message"})
     }
 }
@@ -32,9 +28,15 @@ let clubMember = (req, res, next) => {
     return next();
 }
 
+let isAdmin = (req, res, next) => {
+    res.locals.isAdmin = req.user?.admin;
+    return next();
+}
+
 module.exports = {
     isAuth,
     isMember,
     isAuthenticated,
-    clubMember
+    clubMember,
+    isAdmin
 }

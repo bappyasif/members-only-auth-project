@@ -1,11 +1,14 @@
 <nav>
     <a href="/">Home</a>
     <% if(isAuthenticated) { %>
-        <a href="/join-club">Join Club</a>
         <a href="/message-board">Message Board</a>
     <% } %>
+
+    <% if(isAuthenticated && !isAdmin) { %>
+        <a href="/join-club">Join Club</a>
+    <% } %>
     
-    <% if(isMember) { %>
+    <% if(isMember && !isAdmin) { %>
         <a href="/is-admin">Become Admin</a>
     <% } %>
     
