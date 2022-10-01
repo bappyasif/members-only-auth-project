@@ -1,0 +1,6 @@
+<% if(isAdmin && isMember) { %>
+    <form style="outline: none;" action="" method="post">
+        <input type="text" name="delete" value=<%= msg.delete %>  hidden>
+        <button style="border: none; background-color: transparent;" type="submit"><i class="fa-solid fa-circle-xmark"></i></button>
+    </form>
+<% } %>

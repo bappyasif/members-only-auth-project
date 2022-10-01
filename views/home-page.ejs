@@ -4,57 +4,20 @@
 <body>    
     <div class="container">
         <%- include("./partials/navs.ejs") %>
+        
         <h1><%= title %></h1>
+        
         <% messages?.forEach(msg => { %>
             <div class="msg-wrapper">
                 <div class="left">
                     <span><i class="fa-solid fa-user-astronaut"></i></span>
                 </div>
-                <div class="middle">
-                    <% if(isMember) { %>
-                        <h2 class="author"><%= msg.author_name %></h2>
-                    <% } else { %>
-                        <h2 style="font-size: smaller;" class="author">Annonymous</h2>
-                    <% } %>
-                    <% if(!isAdmin) { %>
-                        <h6>
-                            <% if(isAuthenticated) { %>
-                                <a href="/join-club">become member</a>
-                            <% } else { %>
-                                <a href="/login">login</a>
-                            <% } %>
-                            <br>
-                            <span> to find out</span>
-                        </h6>
-                    <% } %>
-                    <p>::author::</p>
-                </div>
-                <div class="right">
-                    <div class="top">
-                        <h2><span><i class="fa-solid fa-envelope"></i></span><span><%= msg.title %></span></h2>
-                    </div>
-                    <div class="bottom">
-                        <p><span style="font-size: 26px; color: Tomato;"><i class="fa-solid fa-envelope-open-text"></i></span><span><%= msg.body %></span></p>
-                    </div>
-                    <div class="baseline">
-                        <p>
-                            <span><i class="fa-solid fa-calendar-days"></i></span>
-                            <% if(isMember) { %>
-                                <span class="d-posted"><%= msg.posted_date %></span>
-                            <% } else { %>
-                                <span class="d-posted">Some Day, <a href="/login">login</a>, become <a href="/join-club">member</a> to find out</span>
-                            <% } %>
-                        </p>
-                    </div>
-                </div>
                 
-                <% if(isAdmin && isMember) { %>
-                    <form style="outline: none;" action="" method="post">
-                        <input type="text" name="delete" value=<%= msg.delete %>  hidden>
-                        <!-- <input type="text" name="delete" value="delt"  hidden> -->
-                        <button style="border: none; background-color: transparent;" type="submit"><i class="fa-solid fa-circle-xmark"></i></button>
-                    </form>
-                <% } %>
+                <%- include("./partials/msg-middle-part", {msg: msg}) %>
+
+                <%- include("./partials/msg-right-part.ejs", {msg: msg}) %>
+                
+                <%- include("./partials/msg-admin-view.ejs", {msg: msg}) %>
             </div>
         <% }) %>
     </div>

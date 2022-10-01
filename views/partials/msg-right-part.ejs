@@ -1,0 +1,18 @@
+<div class="right">
+    <div class="top">
+        <h2><span><i class="fa-solid fa-envelope"></i></span><span><%= msg?.title %></span></h2>
+    </div>
+    <div class="bottom">
+        <p><span style="font-size: 26px; color: Tomato;"><i class="fa-solid fa-envelope-open-text"></i></span><span><%= msg?.body %></span></p>
+    </div>
+    <div class="baseline">
+        <p>
+            <span><i class="fa-solid fa-calendar-days"></i></span>
+            <% if(isMember) { %>
+                <span class="d-posted"><%= msg?.posted_date %></span>
+            <% } else { %>
+                <span class="d-posted">Some Day, <a href="/login">login</a>, become <a href="/join-club">member</a> to find out</span>
+            <% } %>
+        </p>
+    </div>
+</div>
