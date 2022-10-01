@@ -1,8 +1,14 @@
 <nav>
     <a href="/">Home</a>
-    <a href="/join-club">Join Club</a>
-    <a href="/is-admin">Become Admin</a>
-    <a href="/message-board">Message Board</a>
+    <% if(isAuthenticated) { %>
+        <a href="/join-club">Join Club</a>
+        <a href="/message-board">Message Board</a>
+    <% } %>
+    
+    <% if(isMember) { %>
+        <a href="/is-admin">Become Admin</a>
+    <% } %>
+    
     <% if(!isAuthenticated) { %>
         <a href="/register">Register</a>
         <a href="/login">Login</a>  
