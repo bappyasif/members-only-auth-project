@@ -1,10 +1,19 @@
-h1, h2, h3, h4, p, ul, li {
+h1, h2, h3, h4, h6, p, ul, li {
     padding: 0;
     margin: 0;
 }
 
+:root {
+    --primary-clr: #FF6347;
+    --bg-clr: #F0FFF0;
+    --text-clr: #1F363D;
+    --link-clr: #006BA6;
+    --hover-clr: #FF7F50;
+    --title-clr: #B8B8FF;
+}
+
 body {
-    background-color: honeydew;
+    background-color: var(--bg-clr);
 }
 
 .container {
@@ -22,6 +31,7 @@ body {
     margin: 13px 0;
     padding: 4px;
     border-radius: 6px;
+    color: var(--text-clr);
 }
 
 .msg-wrapper .left {
@@ -35,6 +45,7 @@ body {
     justify-content: space-between;
     max-width: 110px;
     position: relative;
+    margin: 0 11px 0 0;
 }
 
 .msg-wrapper .middle h2.author {
@@ -44,7 +55,7 @@ body {
 
 .msg-wrapper .middle h6 {
     position: absolute;
-    left: 6px;
+    left: 11px;
 }
 
 .msg-wrapper .middle p {
@@ -55,7 +66,7 @@ body {
 
 .msg-wrapper .left span {
     font-size: 5.1em;
-    color: Tomato;
+    color: var(--primary-clr);
     position: absolute;
     top: 0;
 }
@@ -77,6 +88,13 @@ body {
     top: 4px;
     right: 6px;
     font-size: xx-large;
+    color: var(--primary-clr);
+}
+
+.msg-wrapper i.fa-solid.fa-circle-xmark:hover {
+    color: var(--link-clr);
+    background-color: var(--text-clr);
+    border-radius: 50%;
 }
 
 .msg-wrapper .top,
@@ -154,7 +172,7 @@ input {
 form button {
     font-size: x-large;
     margin: 8px 0;
-    background-color: tomato;
+    background-color: var(--primary-clr);
     border: none;
     border-radius: 11px;
     padding: 4px 20px;
@@ -167,7 +185,7 @@ form fieldset {
 }
 
 form button:hover {
-    background-color: coral;
+    background-color: var(--hover-clr);
 }
 
 nav {
@@ -177,9 +195,10 @@ nav {
 .create-msg,
 nav a {
     font-size: xx-large;
-    padding: 2px 6px;
+    padding: 2px 22px;
     margin: 11px;
-    background-color: burlywood;
+    background-color: var(--link-clr);
+    color: var(--bg-clr);
 }
 
 a {
@@ -189,7 +208,7 @@ a {
 }
 
 a:hover {
-    background-color: tomato;
+    background-color: var(--hover-clr);
     border-radius: 11px;
 }
 

@@ -4,7 +4,7 @@
         <a href="/message-board">Message Board</a>
     <% } %>
 
-    <% if(isAuthenticated && !isAdmin) { %>
+    <% if(isAuthenticated && !isMember && !isAdmin) { %>
         <a href="/join-club">Join Club</a>
     <% } %>
     

@@ -1,19 +1,21 @@
 <div class="middle">
-    <% if(isMember) { %>
-        <h2 class="author"><%= msg.author_name %></h2>
-    <% } else { %>
-        <h2 style="font-size: smaller;" class="author">Annonymous</h2>
-    <% } %>
-    <% if(!isAdmin) { %>
-        <h6>
-            <% if(isAuthenticated) { %>
-                <a href="/join-club">become member</a>
-            <% } else { %>
-                <a href="/login">login</a>
-            <% } %>
-            <br>
-            <span> to find out</span>
-        </h6>
-    <% } %>
+    <div class="info">
+        <% if(isMember) { %>
+            <h2 class="author"><%= msg.author_name %></h2>
+        <% } else { %>
+            <h2 style="font-size: smaller; color: var(--title-clr);" class="author">Annonymous</h2>
+        <% } %>
+        <% if(!isAdmin) { %>
+            <h6>
+                <% if(isAuthenticated) { %>
+                    <span>become </span><a href="/join-club">member</a>
+                <% } else { %>
+                    <span>Please </span><a href="/login">login</a>
+                <% } %>
+                <br>
+                <span> to find out</span>
+            </h6>
+        <% } %>
+    </div>
     <p>::author::</p>
 </div>
